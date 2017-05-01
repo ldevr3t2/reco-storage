@@ -9,7 +9,7 @@ schemes:
 - "http"
 - "https"
 paths:
-  /{artist_name}:
+  /artist={artist_name}:
     get:
       tags:
       - "Artist_Suggestion_Storage"
