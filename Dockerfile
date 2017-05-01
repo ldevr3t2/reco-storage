@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM python
 
 ADD ./reco-storage_flask /app
 
