@@ -9,8 +9,10 @@ services:
   # Web server
   reco-storage-web:
     image: reco-storage-webapp
+    ports:
+      - "8080:8080"
     depends_on:
-      - reco-storage-router 
+      - reco-storage-router
     deploy:
       replicas: 1
   
