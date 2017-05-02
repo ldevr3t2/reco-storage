@@ -32,7 +32,7 @@ services:
   config-r0:
     image: reco-storage-mongodb
     volumes:
-      - ~/config/r0:/data/db
+      - cfr0:/data/db
     entrypoint:
       - mongod
       - --configsvr
@@ -53,7 +53,7 @@ services:
   shard0-r0:
     image: reco-storage-mongodb
     volumes:
-      - ~/shard0/r0:/data/db
+      - s0r0:/data/db
     entrypoint:
       - mongod
       - --replSet
@@ -72,7 +72,7 @@ services:
   shard0-r1:
     image: reco-storage-mongodb
     volumes:
-      - ~/shard0/r1:/data/db
+      - s0r1:/data/db
     entrypoint:
       - mongod
       - --replSet
@@ -91,7 +91,7 @@ services:
   shard0-arb:
     image: reco-storage-mongodb
     volumes:
-      - ~/shard0/arb:/data/db
+      - s0ar:/data/db
     entrypoint:
       - mongod
       - --replSet
@@ -110,7 +110,7 @@ services:
   shard1-r0:
     image: reco-storage-mongodb
     volumes:
-      - ~/shard1/r0:/data/db
+      - s1r0:/data/db
     entrypoint:
       - mongod
       - --replSet
@@ -129,7 +129,7 @@ services:
   shard1-r1:
     image: reco-storage-mongodb
     volumes:
-      - ~/shard1/r1:/data/db
+      - s1r1:/data/db
     entrypoint:
       - mongod
       - --replSet
@@ -148,7 +148,7 @@ services:
   shard1-arb:
     image: reco-storage-mongodb
     volumes:
-      - ~/shard1/arb:/data/db
+      - s1ar:/data/db
     entrypoint:
       - mongod
       - --replSet
@@ -167,7 +167,7 @@ services:
   shard2-r0:
     image: reco-storage-mongodb
     volumes:
-      - ~/shard2/r0:/data/db
+      - s2r0:/data/db
     entrypoint:
       - mongod
       - --replSet
@@ -186,7 +186,7 @@ services:
   shard2-r1:
     image: reco-storage-mongodb
     volumes:
-      - ~/shard2/r1:/data/db
+      - s2r1:/data/db
     entrypoint:
       - mongod
       - --replSet
@@ -205,7 +205,7 @@ services:
   shard2-arb:
     image: reco-storage-mongodb
     volumes:
-      - ~/shard2/arb:/data/db
+      - s2ar:/data/db
     entrypoint:
       - mongod
       - --replSet
@@ -219,3 +219,15 @@ services:
       placement:
         constraints:
           - node.role == manager
+
+volumes:
+  cfr0:
+  s0r0:
+  s0r1:
+  s0ar:
+  s1r0:
+  s1r1:
+  s1ar:
+  s2r0:
+  s2r1:
+  s2ar:
