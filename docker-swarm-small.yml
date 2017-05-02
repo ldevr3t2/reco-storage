@@ -1,0 +1,86 @@
+# Small system for implementing sharded MongoDB storage
+# - Config DB is a replica set with only 1 replica
+# - 2 shards
+#   -> Each shard is a replica set with only 1 replica
+
+version: '3'
+
+services:
+  # Web server
+  reco-storage-web:
+    image: reco-storage-webapp
+    deploy:
+      replicas: 1
+
+  # MongoDB mongos router
+  reco-storage-router:
+    image: reco-storage-mongodb
+    entrypoint:
+      - mongos
+      - --configdb
+      - configset/config-r0:27017
+    depends_on:
+      - config-r0
+    deploy:
+      replicas: 1
+
+  # Config replica set
+  config-r0:
+    image: reco-storage-mongodb
+    volumes:
+      - ~/config/r0:/data/db
+    entrypoint:
+      - mongod
+      - --configsvr
+      - --replSet
+      - "configset"
+      - --dbpath
+      - /data/db
+      - --smallfiles
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == worker
+          - node.label.config == true
+          - node.label.replicanum == 0
+  
+  # Shard 0 replica set
+  shard0-r0:
+    image: reco-storage-mongodb
+    volumes:
+      - ~/shard0/r0:/data/db
+    entrypoint:
+      - mongod
+      - --replSet
+      - "shard0set"
+      - --dbpath
+      - /data/db
+      - --smallfiles
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == worker
+          - node.label.shard0 == true
+          - node.label.replicanum == 0
+
+  # Shard 1 replica set
+  shard1-r0:
+    image: reco-storage-mongodb
+    volumes:
+      - ~/shard1/r0:/data/db
+    entrypoint:
+      - mongod
+      - --replSet
+      - "shard1set"
+      - --dbpath
+      - /data/db
+      - --smallfiles
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == worker
+          - node.label.shard1 == true
+          - node.label.replicanum == 0

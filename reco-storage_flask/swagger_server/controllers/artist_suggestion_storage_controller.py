@@ -12,10 +12,10 @@ from pymongo.errors import DuplicateKeyError
 from pymongo import MongoClient 
 
 # Local MongoDB client
-client = MongoClient('localhost', 27017)
+# client = MongoClient('localhost', 27017)
 
 # Dockerized MongoDB client
-# client = MongoClient('storagerouter', 27017)
+client = MongoClient('reco-storage-router', 27017)
 
 # Set up MongoDB database
 db = client['artist_db']

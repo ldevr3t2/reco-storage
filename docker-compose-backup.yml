@@ -1,0 +1,15 @@
+services:
+  reco-storage-web:
+    image: reco-storage-webapp
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+  reco-storage-router:
+    image: reco-storage-mongodb
+    entrypoint:
+      - mongod
+      - --dbpath
+      - /data/db
+      - --smallfiles
