@@ -46,8 +46,8 @@ services:
       placement:
         constraints:
           - node.role == worker
-          - node.label.config == true
-          - node.label.replicanum == 0
+          - node.labels.config == true
+          - node.labels.replicanum == 0
   
   # Shard 0 replica set
   shard0-r0:
@@ -66,8 +66,8 @@ services:
       placement:
         constraints:
           - node.role == worker
-          - node.label.shard0 == true
-          - node.label.replicanum == 0
+          - node.labels.shard0 == true
+          - node.labels.replicanum == 0
 
   shard0-r1:
     image: reco-storage-mongodb
@@ -85,8 +85,8 @@ services:
       placement:
         constraints:
           - node.role == worker
-          - node.label.shard0 == true
-          - node.label.replicanum == 1
+          - node.labels.shard0 == true
+          - node.labels.replicanum == 1
 
   shard0-arb:
     image: reco-storage-mongodb
@@ -123,8 +123,8 @@ services:
       placement:
         constraints:
           - node.role == worker
-          - node.label.shard1 == true
-          - node.label.replicanum == 0
+          - node.labels.shard1 == true
+          - node.labels.replicanum == 0
 
   shard1-r1:
     image: reco-storage-mongodb
@@ -142,8 +142,8 @@ services:
       placement:
         constraints:
           - node.role == worker
-          - node.label.shard1 == true
-          - node.label.replicanum == 1
+          - node.labels.shard1 == true
+          - node.labels.replicanum == 1
 
   shard1-arb:
     image: reco-storage-mongodb
@@ -180,8 +180,8 @@ services:
       placement:
         constraints:
           - node.role == worker
-          - node.label.shard2 == true
-          - node.label.replicanum == 0
+          - node.labels.shard2 == true
+          - node.labels.replicanum == 0
 
   shard2-r1:
     image: reco-storage-mongodb
@@ -199,8 +199,8 @@ services:
       placement:
         constraints:
           - node.role == worker
-          - node.label.shard2 == true
-          - node.label.replicanum == 1
+          - node.labels.shard2 == true
+          - node.labels.replicanum == 1
 
   shard2-arb:
     image: reco-storage-mongodb
