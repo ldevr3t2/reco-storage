@@ -50,7 +50,7 @@ services:
     entrypoint:
       - mongod
       - --port
-      - 27017
+      - "27017"
       - --configsvr
       - --replSet
       - "configset"
@@ -74,7 +74,7 @@ services:
     entrypoint:
       - mongod
       - --port
-      - 27017
+      - "27017"
       - --configsvr
       - --replSet
       - "configset"
@@ -98,7 +98,7 @@ services:
     entrypoint:
       - mongod
       - --port
-      - 27017
+      - "27017"
       - --configsvr
       - --replSet
       - "configset"
@@ -123,7 +123,7 @@ services:
     entrypoint:
       - mongod
       - --port
-      - 27018
+      - "27018"
       - --shardsvr
       - --replSet
       - "shard0set"
@@ -147,7 +147,7 @@ services:
     entrypoint:
       - mongod
       - --port
-      - 27018
+      - "27018"
       - --shardsvr
       - --replSet
       - "shard0set"
@@ -171,7 +171,7 @@ services:
     entrypoint:
       - mongod
       - --port
-      - 27018
+      - "27018"
       - --shardsvr
       - --replSet
       - "shard0set"
@@ -196,7 +196,7 @@ services:
     entrypoint:
       - mongod
       - --port
-      - 27019
+      - "27019"
       - --shardsvr
       - --replSet
       - "shard1set"
@@ -220,7 +220,7 @@ services:
     entrypoint:
       - mongod
       - --port
-      - 27019
+      - "27019"
       - --shardsvr
       - --replSet
       - "shard1set"
@@ -244,7 +244,7 @@ services:
     entrypoint:
       - mongod
       - --port
-      - 27019
+      - "27019"
       - --shardsvr
       - --replSet
       - "shard1set"
@@ -269,7 +269,7 @@ services:
     entrypoint:
       - mongod
       - --port
-      - 27020
+      - "27020"
       - --shardsvr
       - --replSet
       - "shard2set"
@@ -293,7 +293,7 @@ services:
     entrypoint:
       - mongod
       - --port
-      - 27020
+      - "27020"
       - --shardsvr
       - --replSet
       - "shard2set"
@@ -317,7 +317,7 @@ services:
     entrypoint:
       - mongod
       - --port
-      - 27020
+      - "27020"
       - --shardsvr
       - --replSet
       - "shard2set"
