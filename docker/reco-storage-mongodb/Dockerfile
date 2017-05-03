@@ -10,4 +10,6 @@ RUN apt-get update
 
 RUN apt-get install -y mongodb-org
 
+COPY mongos_start.sh /home/mongos_start.sh
+
 WORKDIR /data/db

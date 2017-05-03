@@ -30,6 +30,7 @@ services:
   reco-storage-router:
     image: reco-storage-mongodb
     entrypoint:
+      - /home/mongos_start.sh
       - mongos
       - --configdb
       - configset/config-r0:27017,config-r1:27017,config-r2:27017
