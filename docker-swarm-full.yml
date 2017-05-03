@@ -6,6 +6,14 @@
 version: '3'
 
 services:
+  mongo-setup:
+    image: reco-storage-setup
+    depends_on:
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
   # Web server
   reco-storage-web:
     image: reco-storage-webapp
