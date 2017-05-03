@@ -18,7 +18,7 @@ services:
   reco-storage-web:
     image: reco-storage-webapp
     ports:
-      - "80:80"
+      - "8080:8080"
     depends_on:
       - reco-storage-router
     networks:
