@@ -2,19 +2,19 @@
 
 eval $(docker-machine env manager)
 docker stack rm finalT3
-docker volume purge
+docker volume prune
 
 
 eval $(docker-machine env worker1)
-docker volume purge
+docker volume prune
 
 
 eval $(docker-machine env worker2)
-docker volume purge
+docker volume prune
 
 
 eval $(docker-machine env worker3)
-docker volume purge
+docker volume prune
 
 
 eval $(docker-machine env manager)
