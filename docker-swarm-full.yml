@@ -6,13 +6,13 @@
 version: '3'
 
 services:
-  mongo-setup:
-    image: reco-storage-setup
-    deploy:
-      replicas: 1
-      placement:
-        constraints:
-          - node.role == manager
+  # mongo-setup:
+  #   image: reco-storage-setup
+  #   deploy:
+  #     replicas: 1
+  #     placement:
+  #       constraints:
+  #         - node.role == manager
 
   # Web server
   reco-storage-web:
@@ -21,6 +21,8 @@ services:
       - "80:80"
     depends_on:
       - reco-storage-router
+    networks:
+      - mainnet
     deploy:
       replicas: 1
 
@@ -35,6 +37,8 @@ services:
       - config-r0
       - config-r1
       - config-r2
+    networks:
+      - mainnet
     deploy:
       replicas: 1
 
@@ -51,6 +55,8 @@ services:
       - --dbpath
       - /data/db
       - --smallfiles
+    networks:
+      - mainnet
     deploy:
       replicas: 1
       placement:
@@ -71,6 +77,8 @@ services:
       - --dbpath
       - /data/db
       - --smallfiles
+    networks:
+      - mainnet
     deploy:
       replicas: 1
       placement:
@@ -91,6 +99,8 @@ services:
       - --dbpath
       - /data/db
       - --smallfiles
+    networks:
+      - mainnet
     deploy:
       replicas: 1
       placement:
@@ -112,6 +122,8 @@ services:
       - --dbpath
       - /data/db
       - --smallfiles
+    networks:
+      - mainnet
     deploy:
       replicas: 1
       placement:
@@ -132,6 +144,8 @@ services:
       - --dbpath
       - /data/db
       - --smallfiles
+    networks:
+      - mainnet
     deploy:
       replicas: 1
       placement:
@@ -152,6 +166,8 @@ services:
       - --dbpath
       - /data/db
       - --smallfiles
+    networks:
+      - mainnet
     deploy:
       replicas: 1
       placement:
@@ -173,6 +189,8 @@ services:
       - --dbpath
       - /data/db
       - --smallfiles
+    networks:
+      - mainnet
     deploy:
       replicas: 1
       placement:
@@ -193,6 +211,8 @@ services:
       - --dbpath
       - /data/db
       - --smallfiles
+    networks:
+      - mainnet
     deploy:
       replicas: 1
       placement:
@@ -213,6 +233,8 @@ services:
       - --dbpath
       - /data/db
       - --smallfiles
+    networks:
+      - mainnet
     deploy:
       replicas: 1
       placement:
@@ -234,6 +256,8 @@ services:
       - --dbpath
       - /data/db
       - --smallfiles
+    networks:
+      - mainnet
     deploy:
       replicas: 1
       placement:
@@ -254,6 +278,8 @@ services:
       - --dbpath
       - /data/db
       - --smallfiles
+    networks:
+      - mainnet
     deploy:
       replicas: 1
       placement:
@@ -274,6 +300,8 @@ services:
       - --dbpath
       - /data/db
       - --smallfiles
+    networks:
+      - mainnet
     deploy:
       replicas: 1
       placement:
@@ -295,3 +323,7 @@ volumes:
   s2r0:
   s2r1:
   s2r2:
+
+networks:
+  mainnet:
+    external: true
