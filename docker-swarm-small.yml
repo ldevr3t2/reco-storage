@@ -28,7 +28,7 @@ services:
   config-r0:
     image: reco-storage-mongodb
     volumes:
-      - ~/config/r0:/data/db
+      - cfr0:/data/db
     entrypoint:
       - mongod
       - --configsvr
@@ -42,16 +42,17 @@ services:
       placement:
         constraints:
           - node.role == worker
-          - node.label.config == true
-          - node.label.replicanum == 0
+          - node.labels.config == true
+          - node.labels.replicanum == 0
   
   # Shard 0 replica set
   shard0-r0:
     image: reco-storage-mongodb
     volumes:
-      - ~/shard0/r0:/data/db
+      - s0r0:/data/db
     entrypoint:
       - mongod
+      - --shardsvr
       - --replSet
       - "shard0set"
       - --dbpath
@@ -62,16 +63,17 @@ services:
       placement:
         constraints:
           - node.role == worker
-          - node.label.shard0 == true
-          - node.label.replicanum == 0
+          - node.labels.shard0 == true
+          - node.labels.replicanum == 0
 
   # Shard 1 replica set
   shard1-r0:
     image: reco-storage-mongodb
     volumes:
-      - ~/shard1/r0:/data/db
+      - s1r0:/data/db
     entrypoint:
       - mongod
+      - --shardsvr
       - --replSet
       - "shard1set"
       - --dbpath
@@ -82,5 +84,10 @@ services:
       placement:
         constraints:
           - node.role == worker
-          - node.label.shard1 == true
-          - node.label.replicanum == 0
+          - node.labels.shard1 == true
+          - node.labels.replicanum == 0
+
+volumes:
+  cfr0:
+  s0r0:
+  s1r0:

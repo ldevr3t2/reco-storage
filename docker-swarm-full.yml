@@ -9,6 +9,8 @@ services:
   # Web server
   reco-storage-web:
     image: reco-storage-webapp
+    ports:
+      - "8080:8080"
     depends_on:
       - reco-storage-router 
     deploy:
@@ -32,7 +34,7 @@ services:
   config-r0:
     image: reco-storage-mongodb
     volumes:
-      - ~/config/r0:/data/db
+      - cfr0:/data/db
     entrypoint:
       - mongod
       - --configsvr
@@ -46,13 +48,13 @@ services:
       placement:
         constraints:
           - node.role == worker
-          - node.label.config == true
-          - node.label.replicanum == 0
+          - node.labels.config == true
+          - node.labels.replicanum == 0
 
   config-r1:
     image: reco-storage-mongodb
     volumes:
-      - ~/config/r1:/data/db
+      - cfr1:/data/db
     entrypoint:
       - mongod
       - --configsvr
@@ -66,13 +68,13 @@ services:
       placement:
         constraints:
           - node.role == worker
-          - node.label.config == true
-          - node.label.replicanum == 1
+          - node.labels.config == true
+          - node.labels.replicanum == 1
 
   config-r2:
     image: reco-storage-mongodb
     volumes:
-      - ~/config/r2:/data/db
+      - cfr2:/data/db
     entrypoint:
       - mongod
       - --configsvr
@@ -86,16 +88,17 @@ services:
       placement:
         constraints:
           - node.role == worker
-          - node.label.config == true
-          - node.label.replicanum == 2
+          - node.labels.config == true
+          - node.labels.replicanum == 2
   
   # Shard 0 replica set
   shard0-r0:
     image: reco-storage-mongodb
     volumes:
-      - ~/shard0/r0:/data/db
+      - s0r0:/data/db
     entrypoint:
       - mongod
+      - --shardsvr
       - --replSet
       - "shard0set"
       - --dbpath
@@ -106,15 +109,16 @@ services:
       placement:
         constraints:
           - node.role == worker
-          - node.label.shard0 == true
-          - node.label.replicanum == 0
+          - node.labels.shard0 == true
+          - node.labels.replicanum == 0
 
   shard0-r1:
     image: reco-storage-mongodb
     volumes:
-      - ~/shard0/r1:/data/db
+      - s0r1:/data/db
     entrypoint:
       - mongod
+      - --shardsvr
       - --replSet
       - "shard0set"
       - --dbpath
@@ -125,15 +129,16 @@ services:
       placement:
         constraints:
           - node.role == worker
-          - node.label.shard0 == true
-          - node.label.replicanum == 1
+          - node.labels.shard0 == true
+          - node.labels.replicanum == 1
 
   shard0-r2:
     image: reco-storage-mongodb
     volumes:
-      - ~/shard0/r2:/data/db
+      - s0r2:/data/db
     entrypoint:
       - mongod
+      - --shardsvr
       - --replSet
       - "shard0set"
       - --dbpath
@@ -144,16 +149,17 @@ services:
       placement:
         constraints:
           - node.role == worker
-          - node.label.shard0 == true
-          - node.label.replicanum == 2
+          - node.labels.shard0 == true
+          - node.labels.replicanum == 2
 
   # Shard 1 replica set
   shard1-r0:
     image: reco-storage-mongodb
     volumes:
-      - ~/shard1/r0:/data/db
+      - s1r0:/data/db
     entrypoint:
       - mongod
+      - --shardsvr
       - --replSet
       - "shard1set"
       - --dbpath
@@ -164,15 +170,16 @@ services:
       placement:
         constraints:
           - node.role == worker
-          - node.label.shard1 == true
-          - node.label.replicanum == 0
+          - node.labels.shard1 == true
+          - node.labels.replicanum == 0
 
   shard1-r1:
     image: reco-storage-mongodb
     volumes:
-      - ~/shard1/r1:/data/db
+      - s1r1:/data/db
     entrypoint:
       - mongod
+      - --shardsvr
       - --replSet
       - "shard1set"
       - --dbpath
@@ -183,15 +190,16 @@ services:
       placement:
         constraints:
           - node.role == worker
-          - node.label.shard1 == true
-          - node.label.replicanum == 1
+          - node.labels.shard1 == true
+          - node.labels.replicanum == 1
 
   shard1-r2:
     image: reco-storage-mongodb
     volumes:
-      - ~/shard1/r2:/data/db
+      - s1r2:/data/db
     entrypoint:
       - mongod
+      - --shardsvr
       - --replSet
       - "shard1set"
       - --dbpath
@@ -202,16 +210,17 @@ services:
       placement:
         constraints:
           - node.role == worker
-          - node.label.shard1 == true
-          - node.label.replicanum == 2
+          - node.labels.shard1 == true
+          - node.labels.replicanum == 2
 
   # Shard 2 replica set
   shard2-r0:
     image: reco-storage-mongodb
     volumes:
-      - ~/shard2/r0:/data/db
+      - s2r0:/data/db
     entrypoint:
       - mongod
+      - --shardsvr
       - --replSet
       - "shard2set"
       - --dbpath
@@ -222,15 +231,16 @@ services:
       placement:
         constraints:
           - node.role == worker
-          - node.label.shard2 == true
-          - node.label.replicanum == 0
+          - node.labels.shard2 == true
+          - node.labels.replicanum == 0
 
   shard2-r1:
     image: reco-storage-mongodb
     volumes:
-      - ~/shard2/r1:/data/db
+      - s2r1:/data/db
     entrypoint:
       - mongod
+      - --shardsvr
       - --replSet
       - "shard2set"
       - --dbpath
@@ -241,15 +251,16 @@ services:
       placement:
         constraints:
           - node.role == worker
-          - node.label.shard2 == true
-          - node.label.replicanum == 1
+          - node.labels.shard2 == true
+          - node.labels.replicanum == 1
 
   shard2-r2:
     image: reco-storage-mongodb
     volumes:
-      - ~/shard2/r2:/data/db
+      - s2r2:/data/db
     entrypoint:
       - mongod
+      - --shardsvr
       - --replSet
       - "shard2set"
       - --dbpath
@@ -260,6 +271,19 @@ services:
       placement:
         constraints:
           - node.role == worker
-          - node.label.shard2 == true
-          - node.label.replicanum == 2
+          - node.labels.shard2 == true
+          - node.labels.replicanum == 2
 
+volumes:
+  cfr0:
+  cfr1:
+  cfr2:
+  s0r0:
+  s0r1:
+  s0r2:
+  s1r0:
+  s1r1:
+  s1r2:
+  s2r0:
+  s2r1:
+  s2r2:
