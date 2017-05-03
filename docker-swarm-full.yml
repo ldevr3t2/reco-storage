@@ -49,6 +49,8 @@ services:
       - cfr0:/data/db
     entrypoint:
       - mongod
+      - --port
+      - 27017
       - --configsvr
       - --replSet
       - "configset"
@@ -71,6 +73,8 @@ services:
       - cfr1:/data/db
     entrypoint:
       - mongod
+      - --port
+      - 27017
       - --configsvr
       - --replSet
       - "configset"
@@ -93,6 +97,8 @@ services:
       - cfr2:/data/db
     entrypoint:
       - mongod
+      - --port
+      - 27017
       - --configsvr
       - --replSet
       - "configset"
@@ -116,6 +122,8 @@ services:
       - s0r0:/data/db
     entrypoint:
       - mongod
+      - --port
+      - 27018
       - --shardsvr
       - --replSet
       - "shard0set"
@@ -138,6 +146,8 @@ services:
       - s0r1:/data/db
     entrypoint:
       - mongod
+      - --port
+      - 27018
       - --shardsvr
       - --replSet
       - "shard0set"
@@ -160,6 +170,8 @@ services:
       - s0r2:/data/db
     entrypoint:
       - mongod
+      - --port
+      - 27018
       - --shardsvr
       - --replSet
       - "shard0set"
@@ -183,6 +195,8 @@ services:
       - s1r0:/data/db
     entrypoint:
       - mongod
+      - --port
+      - 27019
       - --shardsvr
       - --replSet
       - "shard1set"
@@ -205,6 +219,8 @@ services:
       - s1r1:/data/db
     entrypoint:
       - mongod
+      - --port
+      - 27019
       - --shardsvr
       - --replSet
       - "shard1set"
@@ -227,6 +243,8 @@ services:
       - s1r2:/data/db
     entrypoint:
       - mongod
+      - --port
+      - 27019
       - --shardsvr
       - --replSet
       - "shard1set"
@@ -250,6 +268,8 @@ services:
       - s2r0:/data/db
     entrypoint:
       - mongod
+      - --port
+      - 27020
       - --shardsvr
       - --replSet
       - "shard2set"
@@ -272,6 +292,8 @@ services:
       - s2r1:/data/db
     entrypoint:
       - mongod
+      - --port
+      - 27020
       - --shardsvr
       - --replSet
       - "shard2set"
@@ -294,6 +316,8 @@ services:
       - s2r2:/data/db
     entrypoint:
       - mongod
+      - --port
+      - 27020
       - --shardsvr
       - --replSet
       - "shard2set"
