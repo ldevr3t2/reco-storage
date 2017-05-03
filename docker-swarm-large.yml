@@ -3,7 +3,7 @@
 # - 3 shards
 #   -> Each shard is a replica set with 3 replicas
 
-version: '3'
+version: '3.2'
 
 services:
   # Web server
